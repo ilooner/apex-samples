@@ -1,5 +1,6 @@
 package com.datatorrent.dimensions.mysql.app;
 
+import com.datatorrent.api.DefaultInputPort;
 import java.util.Collection;
 
 import com.google.common.collect.Sets;
@@ -12,6 +13,15 @@ import com.datatorrent.lib.dimensions.DimensionsEvent.Aggregate;
 public class CustomDimensionsStoreHDHT extends AppDataSingleSchemaDimensionStoreHDHT
 {
   private static final long serialVersionUID = 201510020305L;
+
+  public final transient DefaultInputPort<Aggregate> otherPort = new DefaultInputPort<Aggregate>() {
+
+    @Override
+    public void process(Aggregate t)
+    {
+      CustomDimensionsStoreHDHT.this.processEvent(t);
+    }
+  };
 
   @Override
   public void beginWindow(long windowId)
