@@ -84,7 +84,7 @@ public class MysqlOutputDemo implements StreamingApplication
 
     DimensionsComputationFlexibleSingleSchemaPOJO dimensions =
     dag.addOperator("DimensionsComputation", DimensionsComputationFlexibleSingleSchemaPOJO.class);
-    AppDataSingleSchemaDimensionStoreHDHT store = dag.addOperator("Store", AppDataSingleSchemaDimensionStoreHDHT.class);
+    CustomDimensionsStoreHDHT store = dag.addOperator("Store", CustomDimensionsStoreHDHT.class);
 
     TFileImpl hdsFile = new TFileImpl.DTFileImpl();
 
