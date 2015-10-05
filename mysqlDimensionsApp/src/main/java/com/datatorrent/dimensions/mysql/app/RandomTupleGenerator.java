@@ -37,6 +37,7 @@ public class RandomTupleGenerator implements InputOperator
   public static final List<String> NODE_NAME = Lists.newArrayList("NAME_1", "NAME_2", "NAME_3");
 
   private transient Random rand = new Random();
+  private boolean sent = false;
 
   public RandomTupleGenerator()
   {
@@ -51,13 +52,21 @@ public class RandomTupleGenerator implements InputOperator
   @Override
   public void emitTuples()
   {
-    for(; windowCount < numTuplesPerWindow; windowCount++)
-    {
-      String type = NODE_TYPE.get(rand.nextInt(3));
-      String name = NODE_NAME.get(rand.nextInt(3));
-      long timeStamp = System.currentTimeMillis();
+    if (!sent) {
+      String type = null;
+      String name = null;
+
+      for (int index = 0; index < NODE_TYPE.size(); index++) {
+        for (int index1 = 0; index1 < NODE_NAME.size(); index1++) {
+          type = NODE_TYPE.get(index);
+          name = NODE_NAME.get(index1);
+        }
+      }
+
+      long timeStamp = 0;
 
       output.emit(new DataTuple(timeStamp, name, type));
+      sent = true;
     }
   }
 

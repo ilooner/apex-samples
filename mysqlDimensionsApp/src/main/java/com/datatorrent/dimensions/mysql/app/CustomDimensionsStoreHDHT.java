@@ -36,7 +36,7 @@ public class CustomDimensionsStoreHDHT extends AppDataSingleSchemaDimensionStore
   {
     Collection<Partition<AbstractSinglePortHDHTWriter<Aggregate>>> newPartitions = super.definePartitions(partitions, context);
 
-    long bucket = ((AppDataSingleSchemaDimensionStoreHDHT) newPartitions.iterator().next()).getBucketID();
+    long bucket = ((AppDataSingleSchemaDimensionStoreHDHT) newPartitions.iterator().next().getPartitionedInstance()).getBucketID();
 
     // assign the partition keys
     if (context.getParallelPartitionCount() == 0) {
