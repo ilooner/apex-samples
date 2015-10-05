@@ -6,6 +6,7 @@ import java.util.Collection;
 import com.google.common.collect.Sets;
 
 import com.datatorrent.api.DefaultPartition;
+import com.datatorrent.api.annotation.InputPortFieldAnnotation;
 import com.datatorrent.contrib.dimensions.AppDataSingleSchemaDimensionStoreHDHT;
 import com.datatorrent.contrib.hdht.AbstractSinglePortHDHTWriter;
 import com.datatorrent.lib.dimensions.DimensionsEvent.Aggregate;
@@ -14,6 +15,7 @@ public class CustomDimensionsStoreHDHT extends AppDataSingleSchemaDimensionStore
 {
   private static final long serialVersionUID = 201510020305L;
 
+  @InputPortFieldAnnotation(optional=false)
   public final transient DefaultInputPort<Aggregate> otherPort = new DefaultInputPort<Aggregate>() {
 
     @Override
