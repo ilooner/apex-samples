@@ -15,7 +15,7 @@ public class CustomDimensionsStoreHDHT extends AppDataSingleSchemaDimensionStore
 {
   private static final long serialVersionUID = 201510020305L;
 
-  @InputPortFieldAnnotation(optional=false)
+  @InputPortFieldAnnotation(optional=true)
   public final transient DefaultInputPort<Aggregate> otherPort = new DefaultInputPort<Aggregate>() {
 
     @Override
