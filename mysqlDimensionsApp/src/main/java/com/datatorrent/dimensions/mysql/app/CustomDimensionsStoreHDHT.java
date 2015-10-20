@@ -15,6 +15,8 @@ public class CustomDimensionsStoreHDHT extends AppDataSingleSchemaDimensionStore
 {
   private static final long serialVersionUID = 201510020305L;
 
+  private int windowCounter = 0;
+
   @InputPortFieldAnnotation(optional=true)
   public final transient DefaultInputPort<Aggregate> otherPort = new DefaultInputPort<Aggregate>() {
 
@@ -58,5 +60,24 @@ public class CustomDimensionsStoreHDHT extends AppDataSingleSchemaDimensionStore
     }
 
     return newPartitions;
+  }
+
+  @Override
+  public void endWindow()
+  {
+    windowCounter++;
+    super.endWindow();
+  }
+
+  @Override
+  public void emitUpdates()
+  {
+    if(windowCounter < this.getCacheWindowDuration()) {
+      return;
+    }
+
+    windowCounter = 0;
+
+    super.emitUpdates();
   }
 }
