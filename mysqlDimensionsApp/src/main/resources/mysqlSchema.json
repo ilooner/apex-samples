@@ -2,10 +2,11 @@
          {"name":"node_type","type":"string"}],
  "timeBuckets":["1m"],
  "values":
-  [{"name":"count","type":"string","aggregators":["COUNT"]}],
+  [{"name":"count","type":"string","aggregators":["COUNT"]},
+   {"name":"count1","type":"string"}],
  "dimensions":
   [{"combination":[]},
-   {"combination":["node_name"]},
+   {"combination":["node_name"],"additionalValues":["count1:COUNT"]},
    {"combination":["node_type"]},
    {"combination":["node_name","node_type"]}]
 }

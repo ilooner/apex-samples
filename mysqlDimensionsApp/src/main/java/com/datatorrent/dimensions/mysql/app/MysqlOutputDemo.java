@@ -101,6 +101,7 @@ public class MysqlOutputDemo implements StreamingApplication
 
     Map<String, String> aggregateToExpression = Maps.newHashMap();
     aggregateToExpression.put("count", "getNodeName()");
+    aggregateToExpression.put("count1", "getNodeName()");
 
     dimensions.setKeyToExpression(keyToExpression);
     dimensions.setAggregateToExpression(aggregateToExpression);
