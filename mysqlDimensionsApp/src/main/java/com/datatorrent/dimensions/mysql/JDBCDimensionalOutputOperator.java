@@ -358,7 +358,7 @@ public class JDBCDimensionalOutputOperator extends AbstractPassThruTransactionab
 
       Type type = fieldToType.get(fieldName);
 
-      LOG.info("Field Name {}", fieldName);
+      LOG.info("Field Name {} {}", fieldName, qCounter);
 
       switch(type)
       {
