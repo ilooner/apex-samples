@@ -112,6 +112,7 @@ public class JDBCDimensionalOutputOperator extends AbstractPassThruTransactionab
 
         keyNames.remove(DimensionsDescriptor.DIMENSION_TIME_BUCKET);
         List<String> aggregateNames = aggFD.getFieldList();
+        LOG.info("List fields {}", aggregateNames);
         String tableName = aggTable.getValue();
 
         String statementString = buildStatement(tableName, keyNames, aggregateNames);
