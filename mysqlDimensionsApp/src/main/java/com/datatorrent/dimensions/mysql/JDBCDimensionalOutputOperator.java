@@ -111,6 +111,8 @@ public class JDBCDimensionalOutputOperator extends AbstractPassThruTransactionab
         keyNames.set(keyNames.indexOf(DimensionsDescriptor.DIMENSION_TIME), "date");
 
         keyNames.remove(DimensionsDescriptor.DIMENSION_TIME_BUCKET);
+
+        LOG.info("List fields {}", keyNames);
         List<String> aggregateNames = aggFD.getFieldList();
         LOG.info("List fields {}", aggregateNames);
         String tableName = aggTable.getValue();
@@ -307,6 +309,8 @@ public class JDBCDimensionalOutputOperator extends AbstractPassThruTransactionab
 
     int ddID = eventKey.getDimensionDescriptorID();
     int aggID = eventKey.getAggregatorID();
+
+    LOG.info("Setting statement params {} {}", ddID, aggID);
 
     FieldsDescriptor keyFD = schema.getDimensionsDescriptorIDToKeyDescriptor().get(ddID);
     FieldsDescriptor aggFD = schema.getDimensionsDescriptorIDToAggregatorIDToOutputAggregatorDescriptor().get(ddID).get(aggID);
