@@ -353,6 +353,7 @@ public class JDBCDimensionalOutputOperator extends AbstractPassThruTransactionab
       String fieldName = fields.get(fieldCounter);
 
       if (fieldName.equals(DimensionsDescriptor.DIMENSION_TIME_BUCKET)) {
+        qCounter--;
         continue;
       }
 
